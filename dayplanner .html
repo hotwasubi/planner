@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    
+    <style>
+       body{
+           background-color: grey;
+       }
+
+        header{
+            text-align: center;
+        }
+    
+    
+    .jumbotron{
+        background-color: white;
+    }
+     
+     #clear{
+    background-color: red;
+
+     }
+    
+    </style>
+
+    <title>Day Planner</title>
+
+</head>
+<body>
+    <header class="display-4">Day Planner</header>
+     <h4 class="text-center" id="t/d"></h4>
+    <div class="container">
+    
+        <div class="jumbotron main"></div>
+            
+            <div class="row">
+                <div class="col-sm-5"></div>
+                <div class="col-sm-2">
+                    <button type="button" class="btn btn-primary btn-lg" id="clear">Clear</button>
+                </div>
+
+            </div>
+
+           
+ 
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+
+var times = ["09:00", "10:00","11:00","12:00","13:00","14:00","1500","16:00","17:00"]
+var d = new Date()
+ document.getElementById("t/d").innerHTML = d;
+ for (i = 0; i < times.length; i++){
+    $('.main').append('<div class="row"\><div class="col-sm-1 sTime text-center">' + times[i] +'</div\><div class="col-sm-8"\><textarea id=' + 'text' + i + ' cols="30" rows="4"> </textarea\></div\><div class="col-sm-1"><button class=" btn btn-primary btn-lg save" id=' + i + '>save</button></div\></div>')
+     
+    
+ };
+
+
+
+$('.save').click(function(e){
+    localStorage.setItem(e.target.id, $('#text' + e.target.id).val());
+});
+$(document).ready(function(){
+$('#clear').click(function(){
+    $('textarea').text('')
+    $("textarea").empty();
+    return localStorage.clear();
+});
+});
+
+
+
+    </script>
+    
+</body>
+</html>
